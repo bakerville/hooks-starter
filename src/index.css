@@ -1,5 +1,5 @@
 body {
-  background: #f8f5f1;
+  background: #2e2a2a;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -9,8 +9,14 @@ body {
 }
 
 h1 {
+  color: #fff;
   text-align: center;
-  border-bottom: solid 2px #fbc89d;
+  border-bottom: solid 2px #c96615;
+}
+
+h3 {
+  color: #fff;  
+  border-bottom: solid 2px #178a7a;
 }
 
 .form-row {
