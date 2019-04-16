@@ -1,32 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, createContext } from 'react';
 import Toggle from './Toggle';
+import Counter from './Counter';
+import { useTitleInput } from './hooks/useTitleInput';
+
+export const UserContext = createContext();
+
+
 
 const App = () => {
   // general formula: const [value, setValue] = useState(initialState);
-  const [name, setName] = useState('');
+  const [name, setName] = useTitleInput('');
 
-  // if using a class to do this: componentdidmount and componentdidupdate would be needed
-  useEffect(()=> {
-    document.title = name;
-  })
-
-
+  const ref = useRef();
+  console.log('ref:', ref.current);
+ 
   return (
-    <div className="main-wrapper">
-      <h1>Level Up Dishes</h1>
-      <Toggle />
-      <form onSubmit= {e => {
+    <UserContext.Provider
+      value ={{
+        user: true
+      }}
+    >
+      <div className="main-wrapper" ref = {ref}>
+        <h1 onClick={()=> ref.current.classList.add('new-fake-class')}>Level Up Dishes</h1>
+        <Toggle />
+        <Counter/>
+        <form onSubmit= {e => {
         e.prevenetDefailt();        
-      }}>
-        <input type="text" onChange={e => setName(e.target.value)} value={name}/>
-        <button>Submit</button>
-      </form>
-      
-    </div>
+        }}>
+          <input type="text" onChange={e => setName(e.target.value)} value={name}/>
+          <button>Submit</button>
+        </form>      
+      </div>
+    </UserContext.Provider>
+    
   );
 };
-
-
 
 
 export default App;
