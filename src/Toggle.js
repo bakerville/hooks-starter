@@ -5,15 +5,12 @@ const Toggle = () => {
   const [isToggled, setToggle] = useState(false);
   return (
     <div>
+      {isToggled ? (<DishForm setToggle ={setToggle} />
+    ) : (
       <button onClick={()=> setToggle(!isToggled) }>Toggle</button>
-      {isToggled && <DishForm />}
+    )}     
     </div>
   );
 };
 
 export default Toggle;
-
-
-
-
-
